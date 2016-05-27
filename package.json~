@@ -1,0 +1,16 @@
+{
+  "name": "adamo-provision",
+  "description": "Provision script",
+  "repository": "code.adamo.es:7999/provision/provision.2",
+  "email": "erik.landvall@adamo.es",
+  "scripts":
+  {
+    "start": "npm install && node node_modules/app/service/server.js"
+  },
+  "license": "UNLICENSED",
+  "dependencies":
+  {
+    "mysql": "2.x",
+    "handlebars": "4.x"
+  }
+}

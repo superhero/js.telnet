@@ -1,0 +1,7 @@
+{
+  "name": "telnet",
+  "description": "Telenet client",
+  "repository": "https://github.com/erik-landvall/nodejs.telnet.git",
+  "email": "erik@landvall.se",
+  "license": "MIT"
+}
