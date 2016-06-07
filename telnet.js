@@ -3,42 +3,49 @@
 module.exports = (options) =>
 {
   const
-    bus     = new class extends require('events') {},
-    telnet  = new require('net').Socket(),
-    config  =
+  bus     = require('app/service/event-bus')(),
+  telnet  = new require('net').Socket(),
+  config  =
+  {
+    host    : options.host    || '127.0.0.1',
+    port    : options.port    || 23,
+    timeout : options.timeout || 0,
+    debug   : options.debug   || false,
+    error   : options.error   || false
+  },
+  // debugger tool, logs to the console if the config.debug is set to true..
+  debug = (msg) => config.debug && console.log('debug:', msg),
+  // waits for data to match the next jobs regex..
+  delegate = (function()
+  {
+    let id;
+    return () =>
     {
-      host    : options.host    || '127.0.0.1',
-      port    : options.port    || 23,
-      timeout : options.timeout || 0,
-      debug   : options.debug   || false
-    },
+      clearImmediate(id);
 
-    // debugger tool, logs to the console if the config.debug is set to true..
-    debug = (msg) => config.debug && console.log('debug:', msg),
-
-    delegate = (function()
-    {
-      let id;
-      return () =>
+      if(queue.length && dto.match(queue[0].regex))
       {
-        clearImmediate(id);
-
-        if(queue.length && dto.match(queue[0].regex))
-        {
-          bus.emit('return', dto);
-          dto = '';
-          bus.emit('ready');
-        }
-        else if(!queue.length)
-        {
-          id = setImmediate(delegate);
-        }
+        bus.emit('return', dto);
+        dto = '';
+        bus.emit('ready');
       }
-    })();
+      else if(!queue.length)
+      {
+        id = setImmediate(delegate);
+      }
+    }
+  })();
 
   let
-    queue = [],
-    dto   = '';
+  queue = [],
+  dto   = '';
+
+  // forwarding error message, if one appear
+  telnet.on('error', (error) =>
+  {
+    debug(`error: "${error}"`);
+    config.error && config.error(error);
+  });
 
   // trigger the "return" event before exiting, resetting the queue
   telnet.on('close', (...args) =>
