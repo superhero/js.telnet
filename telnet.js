@@ -3,7 +3,7 @@
 module.exports = (options) =>
 {
   const
-  bus     = require('app/service/event-bus')(),
+  bus     = new class extends require('events') {},
   telnet  = new require('net').Socket(),
   config  =
   {
