@@ -1,15 +1,14 @@
 {
-  "name"        : "@superhero/websocket",
-  "version"     : "0.1.3",
-  "description" : "A websocket implementation",
-  "repository"  : "git@github.com:joppli/websocket.git",
-  "main"        : "src/gateway/socket.js",
+  "name"        : "@superhero/telnet",
+  "version"     : "0.1.0",
+  "description" : "A telnet client",
+  "repository"  : "git@github.com:joppli/telnet.git",
+  "main"        : "src/driver/socket.js",
   "license"     : "WTFPL",
   "keywords"    :
   [
-    "websocket",
-    "ws",
-    "wss"
+    "telnet",
+    "client"
   ],
   "author"      :
   {
