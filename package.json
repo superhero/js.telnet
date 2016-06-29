@@ -3,7 +3,7 @@
   "version"     : "0.1.1",
   "description" : "A telnet client",
   "repository"  : "git@github.com:joppli/telnet.git",
-  "main"        : "src/driver/socket.js",
+  "main"        : "lib/telnet.js",
   "license"     : "WTFPL",
   "keywords"    :
   [
