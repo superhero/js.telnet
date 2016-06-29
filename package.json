@@ -1,6 +1,6 @@
 {
   "name"        : "@superhero/telnet",
-  "version"     : "0.1.0",
+  "version"     : "0.1.1",
   "description" : "A telnet client",
   "repository"  : "git@github.com:joppli/telnet.git",
   "main"        : "src/driver/socket.js",
