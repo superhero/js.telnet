@@ -1,15 +1,11 @@
 {
-  "name"        : "@superhero/telnet",
-  "version"     : "0.1.2",
-  "description" : "A telnet client",
-  "repository"  : "git@github.com:joppli/telnet.git",
-  "main"        : "lib/telnet.js",
-  "license"     : "WTFPL",
-  "keywords"    :
-  [
-    "telnet",
-    "client"
-  ],
+  "name"        :  "@superhero/telnet",
+  "version"     :  "0.2.0",
+  "description" :  "A telnet client",
+  "repository"  :  "git@github.com:joppli/telnet.git",
+  "main"        :  "lib/telnet.js",
+  "license"     :  "WTFPL",
+  "keywords"    : ["telnet","client"],
   "author"      :
   {
     "name"  : "Erik Landvall",
