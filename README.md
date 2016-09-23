@@ -26,25 +26,60 @@ A simple telnet client
 ```javascript
 'use strict';
 
-module.exports = (host, callback) =>
+module.exports = (callback) =>
 {
   const
-  log    = (rsp) => console.log(rsp),
   telnet = require('@superhero/telnet')(
   {
-    host    : host,
-    port    : 23,
-    timeout : 60000,
-    error   : callback, // callback(error)
-    debug   : true
+    timeout   : 60000,
+    onError   : callback,
+    onEnd     : callback,
+    onTimeout : callback,
+    debug     : true
   }).connect();
 
   // all commands are stacked and performed in a series after each other.
   telnet
   .exec(/login: $/i, 'superhero')
   .exec(/password: $/i, 'b-real')
-  .exec(/# $/, '<your command>', log)
-  .exec(/# $/, 'exit', () => callback());
-};
 
+  /**
+   * 1. regex, when found in returned string.. make new command
+   * 2. the telnet command to perform
+   * 3. callback with the returned data after the command has been performed
+   */
+  .exec(/# $/, '<your command>', (data) => {});
+};
+```
+
+## options
+
+All options are optional.
+
+```javascript
+{
+  // address to connect to
+  host      : '127.0.0.1',
+
+  // connection port
+  port      : 23,
+
+  // timeout in milliseconds, if 0 then never timeout
+  timeout   : 0,
+
+  // debug mode
+  debug     : false,
+
+  // when the commands queue stack is depleted use this regex to find the end  
+  end       : /# ?$/,
+
+  // callback when end is found
+  onEnd     : undefined,
+
+  // callabck when an error took place
+  onError   : undefined,
+
+  // callback when a timeout occurred
+  onTimeout : undefined,
+}
 ```
