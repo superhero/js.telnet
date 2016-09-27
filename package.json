@@ -1,8 +1,8 @@
 {
   "name"        :  "@superhero/telnet",
-  "version"     :  "0.2.6",
-  "description" :  "A telnet client",
-  "repository"  :  "git@github.com:joppli/telnet.git",
+  "version"     :  "0.2.8",
+  "description" :  "Telnet client",
+  "repository"  :  "git@github.com:superhero/js.telnet.git",
   "main"        :  "lib/telnet.js",
   "license"     :  "WTFPL",
   "keywords"    : ["telnet","client"],
