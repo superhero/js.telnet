@@ -4,6 +4,8 @@ Licence: [Do What The Fuck You Want To Public License (WTFPL)](http://www.wtfpl.
 
 ---
 
+[![npm version](https://badge.fury.io/js/%40superhero%2Ftelnet.svg)](https://badge.fury.io/js/%40superhero%2Ftelnet)
+
 A simple telnet client
 
 ## Install
