@@ -1,6 +1,6 @@
 {
   "name"        :  "@superhero/telnet",
-  "version"     :  "0.2.9",
+  "version"     :  "0.2.10",
   "description" :  "Telnet client",
   "repository"  :  "git@github.com:superhero/js.telnet.git",
   "main"        :  "lib/telnet.js",
@@ -11,5 +11,9 @@
     "name"  : "Erik Landvall",
     "email" : "erik@landvall.se",
     "url"   : "http://erik.landvall.se"
+  },
+  "dependencies":
+  {
+    "@superhero/debug": "0.0.1"
   }
 }
