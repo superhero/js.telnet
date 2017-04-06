@@ -72,6 +72,9 @@ All options are optional.
   // debug mode
   debug     : false,
 
+  // array of regex, output will be compared to all the regex, if match, exit -> emit error..
+  error     : [],
+
   // when the commands queue stack is depleted use this regex to find the end  
   end       : /# ?$/,
 
