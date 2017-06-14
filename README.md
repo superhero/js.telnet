@@ -61,30 +61,33 @@ All options are optional.
 ```javascript
 {
   // address to connect to
-  host      : '127.0.0.1',
+  host        : '127.0.0.1',
 
   // connection port
-  port      : 23,
+  port        : 23,
 
   // timeout in milliseconds, if 0 then never timeout
-  timeout   : 0,
+  timeout     : 0,
 
   // debug mode
-  debug     : false,
+  debug       : false,
+
+  // control the amount of debugging data logged
+  debug_level : 1,
 
   // array of regex, output will be compared to all the regex, if match, exit -> emit error..
-  error     : [],
+  error       : [],
 
   // when the commands queue stack is depleted use this regex to find the end  
-  end       : /# ?$/,
+  end         : /# ?$/,
 
   // callback when end is found
-  onEnd     : undefined,
+  onEnd       : undefined,
 
   // callabck when an error took place
-  onError   : undefined,
+  onError     : undefined,
 
   // callback when a timeout occurred
-  onTimeout : undefined,
+  onTimeout   : undefined,
 }
 ```
