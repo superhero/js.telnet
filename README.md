@@ -69,8 +69,8 @@ All options are optional.
   // timeout in milliseconds, if 0 then never timeout
   timeout     : 0,
 
-  // debug mode
-  debug       : false,
+  // debug options, see "superhero/js.debug" for options
+  debug       : {},
 
   // control the amount of debugging data logged
   debug_level : 1,
