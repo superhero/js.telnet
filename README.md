@@ -36,7 +36,8 @@ module.exports = (callback) =>
     timeout     : 60000,
     onError     : callback,
     onEnd       : callback,
-    onTimeout   : callback
+    onTimeout   : callback,
+    debug_level : 3
   }).connect();
 
   // all commands are stacked and performed in a series after each other.
