@@ -26,8 +26,6 @@ A simple telnet client
 ## Example
 
 ```javascript
-'use strict';
-
 module.exports = (callback) =>
 {
   const
