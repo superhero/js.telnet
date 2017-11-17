@@ -26,18 +26,16 @@ A simple telnet client
 ## Example
 
 ```javascript
-'use strict';
-
 module.exports = (callback) =>
 {
   const
   telnet = require('@superhero/telnet')(
   {
-    timeout   : 60000,
-    onError   : callback,
-    onEnd     : callback,
-    onTimeout : callback,
-    debug     : true
+    timeout     : 60000,
+    onError     : callback,
+    onEnd       : callback,
+    onTimeout   : callback,
+    debug_level : 3
   }).connect();
 
   // all commands are stacked and performed in a series after each other.
