@@ -1,6 +1,6 @@
 {
   "name"        :  "@superhero/telnet",
-  "version"     :  "0.5.0",
+  "version"     :  "0.5.1",
   "description" :  "Telnet client",
   "repository"  :  "git@github.com:superhero/js.telnet.git",
   "main"        :  "lib/telnet.js",
@@ -14,6 +14,6 @@
   },
   "dependencies":
   {
-    "@superhero/debug": "*"
+    "@superhero/debug": "1.0.2"
   }
 }
