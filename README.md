@@ -29,26 +29,23 @@ A simple telnet client
 module.exports = (callback) =>
 {
   const
-  telnet = require('@superhero/telnet')(
-  {
-    timeout     : 60000,
-    onError     : callback,
-    onEnd       : callback,
-    onTimeout   : callback,
-    debug_level : 3
-  }).connect();
+  Telnet = require('@superhero/telnet'),
+  telnet = new Telnet();
+
+  telnet.connect()
 
   // all commands are stacked and performed in a series after each other.
-  telnet
   .exec(/login: $/i, 'superhero')
   .exec(/password: $/i, 'b-real')
 
   /**
-   * 1. regex, when found in returned string.. make new command
-   * 2. the telnet command to perform
-   * 3. callback with the returned data after the command has been performed
+   * Argument specification:
+   * 1. regex, when found in returned string, then write the command
+   * 2. the telnet command to write
+   * 3. [optional] how long to sleep, expressed in milliseconds
+   * 4. [optional] callback with the returned data after the command has been performed
    */
-  .exec(/# $/, '<your command>', (data) => {});
+  .exec(/# $/, '<your command>', 0, (data) => {});
 };
 ```
 
@@ -58,34 +55,28 @@ All options are optional.
 
 ```javascript
 {
-  // address to connect to
-  host        : '127.0.0.1',
-
-  // connection port
-  port        : 23,
-
   // timeout in milliseconds, if 0 then never timeout
-  timeout     : 0,
+  timeout     : 60e3,
 
   // debug options, see "superhero/js.debug" for options
   debug       : {},
 
-  // control the amount of debugging data logged
-  debug_level : 1,
+  // control the amount of debugging data logged, the smaller the number the less is logged
+  debug_level : 3,
 
   // array of regex, output will be compared to all the regex, if match, exit -> emit error..
   error       : [],
 
-  // when the commands queue stack is depleted use this regex to find the end  
-  end         : /# ?$/,
+  // array of regex, when the commands queue stack is depleted use this regex to find the end  
+  end         : [/# ?$/],
 
-  // callback when end is found
-  onEnd       : undefined,
+  // list of callbacks when end is found
+  onEnd       : [],
 
-  // callabck when an error took place
-  onError     : undefined,
+  // list of callbacks when an error took place
+  onError     : [],
 
-  // callback when a timeout occurred
-  onTimeout   : undefined,
+  // list of callbacks when a timeout occurred
+  onTimeout   : [],
 }
 ```
