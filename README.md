@@ -26,27 +26,26 @@ A simple telnet client
 ## Example
 
 ```javascript
-module.exports = (callback) =>
-{
-  const
-  Telnet = require('@superhero/telnet'),
-  telnet = new Telnet();
+const
+Telnet  = require('@superhero/telnet'),
+telnet  = new Telnet(),
+host    = '127.0.0.1',
+port    = 23;
 
-  telnet.connect()
+telnet.connect(host, port)
 
-  // all commands are stacked and performed in a series after each other.
-  .exec(/login: $/i, 'superhero')
-  .exec(/password: $/i, 'b-real')
+// all commands are stacked and performed in a series after each other.
+.exec(/login: $/i, 'superhero')
+.exec(/password: $/i, 'b-real')
 
-  /**
-   * Argument specification:
-   * 1. regex, when found in returned string, then write the command
-   * 2. the telnet command to write
-   * 3. [optional] how long to sleep, expressed in milliseconds
-   * 4. [optional] callback with the returned data after the command has been performed
-   */
-  .exec(/# $/, '<your command>', 0, (data) => {});
-};
+/**
+ * Argument specification:
+ * 1. regex, when found in returned string, then write the command
+ * 2. the telnet command to write
+ * 3. [optional] how long to sleep, expressed in milliseconds
+ * 4. [optional] callback with the returned data after the command has been performed
+ */
+.exec(/# $/, '<your command>', 0, (data) => {});
 ```
 
 ## options
