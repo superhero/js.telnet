@@ -32,6 +32,7 @@ telnet  = new Telnet(),
 host    = '127.0.0.1',
 port    = 23;
 
+// optional host and port, but you probably like to specify the host at least :)
 telnet.connect(host, port)
 
 // all commands are stacked and performed in a series after each other.
