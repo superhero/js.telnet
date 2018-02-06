@@ -161,7 +161,7 @@ module.exports = class
 
   disconnect()
   {
-    this.telnet.end();
+    this.socket.end();
     return this;
   }
 
