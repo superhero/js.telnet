@@ -42,7 +42,7 @@ module.exports = class
     // forwarding timeouts
     this.socket.on('timeout', () =>
     {
-      flush();
+      this.flush();
       this.observers.onTimeout.forEach((observer) => observer());
     });
 
@@ -104,7 +104,7 @@ module.exports = class
 
   flush()
   {
-    this.events.emit('return', this.buffer);
+    this.events.emit('return', this.buffer.toString());
     this.buffer = Buffer.from('');
 
     return this;
@@ -129,10 +129,11 @@ module.exports = class
       this.socket.emit('error', this.buffer.toString());
       this.buffer = Buffer.from('');
     }
-    else if(this.queue.length && this.buffer.match(this.queue[0].regex))
+    else if(this.queue.length
+         && this.buffer.toString().match(this.queue[0].regex))
     {
       this.flush();
-      this.socket.emit('ready');
+      this.events.emit('ready');
     }
     else if(!this.queue.length && this.isEnd(this.buffer))
     {
@@ -143,7 +144,7 @@ module.exports = class
     else
     {
       this.config.debug_level > 2
-      && this.socket.emit('return', this.buffer);
+      && this.events.emit('return', this.buffer.toString());
     }
     return this;
   }
