@@ -158,6 +158,7 @@ module.exports = class
   {
     this.socket.connect(port, host, () =>
     {
+      this.closed = false;
       this.debug.log(`connected to "${host}:${port}"`);
       this.debug.log(`set timeout to "${this.config.timeout}"`);
       this.socket.setTimeout(this.config.timeout);
