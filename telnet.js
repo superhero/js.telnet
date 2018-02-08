@@ -15,6 +15,7 @@ module.exports = class
       error       : [],
       end         : [/# ?$/],
       onEnd       : [],
+      onClose     : [],
       onError     : [],
       onTimeout   : []
     }, options);
@@ -28,6 +29,7 @@ module.exports = class
     this.observers  =
     {
       onEnd     : this.config.onEnd,
+      onClose   : this.config.onClose,
       onError   : this.config.onError,
       onTimeout : this.config.onTimeout
     };
@@ -54,6 +56,9 @@ module.exports = class
 
       this.queue.length = 0;
       this.flush();
+
+      this.closed = true;
+      this.observers.onClose.forEach((observer) => observer());
     });
 
     // routing incoming data
@@ -171,6 +176,14 @@ module.exports = class
     this.ended
     ? observer()
     : this.observers.onEnd.push(observer);
+    return this;
+  }
+
+  onClose(observer)
+  {
+    this.closed
+    ? observer()
+    : this.observers.onClose.push(observer);
     return this;
   }
 

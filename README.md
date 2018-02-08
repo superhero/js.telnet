@@ -73,6 +73,9 @@ All options are optional.
   // list of callbacks when end is found
   onEnd       : [],
 
+  // list of callbacks when the socket connection has closed
+  onClose     : [],
+
   // list of callbacks when an error took place
   onError     : [],
 
