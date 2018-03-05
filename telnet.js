@@ -83,7 +83,7 @@ module.exports = class
 
       // if a callaback for the command is specified to be called after the
       // command is completed
-      job.callback && this.events.once('return', job.callback);
+      job.callback && this.events.once('return', (s) => job.callback(null, s));
 
       // executing the queued command with or without a delay depending on
       // specification

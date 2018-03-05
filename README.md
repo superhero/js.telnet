@@ -46,7 +46,7 @@ telnet.connect(host, port)
  * 3. [optional] how long to sleep, expressed in milliseconds
  * 4. [optional] callback with the returned data after the command has been performed
  */
-.exec(/# $/, '<your command>', 0, (data) => {});
+.exec(/# $/, '<your command>', 0, (error, data) => {});
 ```
 
 ## options
