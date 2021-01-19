@@ -14,6 +14,6 @@
   },
   "dependencies":
   {
-    "@superhero/debug": "1.1.4"
+    "@superhero/debug": "1.1.14"
   }
 }
