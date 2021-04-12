@@ -81,6 +81,9 @@ module.exports = class
       this.config.debug_level > 1
       && this.debug.log(`executing: "${job.cmd}"`);
 
+      // to be able to trace the execution flow from then eventbus
+      this.events.emit('executing', job.cmd);
+
       // if a callaback for the command is specified to be called after the
       // command is completed
       job.callback && this.events.once('return', (s) => job.callback(null, s));
@@ -145,6 +148,7 @@ module.exports = class
       this.ended = true;
       this.flush();
       this.observers.onEnd.forEach((observer) => observer());
+      this.disconnect();
     }
     else
     {
@@ -168,6 +172,8 @@ module.exports = class
 
   disconnect()
   {
+    this.events.removeAllListeners();
+    this.socket.removeAllListeners();
     this.socket.end();
     return this;
   }
