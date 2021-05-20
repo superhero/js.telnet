@@ -37,6 +37,7 @@ module.exports = class
     // forwarding error message
     this.socket.on('error', (error) =>
     {
+      this.flush()
       this.debug.log(`error: "${error}"`);
       this.observers.onError.forEach((observer) => observer(error));
     });
