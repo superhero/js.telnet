@@ -50,6 +50,13 @@ module.exports = class
     });
 
     // trigger the "return" event before exiting, resetting the queue
+    this.socket.on('end', (...args) =>
+    {
+      this.flush();
+      this.observers.onEnd.forEach((observer) => observer());
+    });
+
+    // trigger the "return" event before exiting, resetting the queue
     this.socket.on('close', (...args) =>
     {
       this.config.debug_level > 1
@@ -60,6 +67,9 @@ module.exports = class
 
       this.closed = true;
       this.observers.onClose.forEach((observer) => observer());
+      
+      this.events.removeAllListeners();
+      this.socket.removeAllListeners();
     });
 
     // routing incoming data
@@ -148,7 +158,6 @@ module.exports = class
     {
       this.ended = true;
       this.flush();
-      this.observers.onEnd.forEach((observer) => observer());
       this.disconnect();
     }
     else
@@ -173,8 +182,6 @@ module.exports = class
 
   disconnect()
   {
-    this.events.removeAllListeners();
-    this.socket.removeAllListeners();
     this.socket.end();
     return this;
   }
