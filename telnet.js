@@ -97,7 +97,7 @@ module.exports = class
 
       // if a callaback for the command is specified to be called after the
       // command is completed
-      job.callback && this.events.once('return', (s) => job.callback(null, s));
+      job.callback && this.events.once('ready', (s) => job.callback(null, s));
 
       // executing the queued command with or without a delay depending on
       // specification
@@ -163,7 +163,7 @@ module.exports = class
     else
     {
       this.config.debug_level > 2
-      && this.events.emit('return', this.buffer.toString());
+      && this.debug.log('partial:', this.buffer.toString());
     }
     return this;
   }
