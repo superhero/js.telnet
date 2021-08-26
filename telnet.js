@@ -123,7 +123,7 @@ module.exports = class
 
   flush()
   {
-    this.events.emit('return', this.buffer.toString());
+    this.events.emit('return', this.buffer);
     this.buffer = Buffer.from('');
 
     return this;
