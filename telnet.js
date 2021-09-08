@@ -143,7 +143,7 @@ module.exports = class
 
   delegate()
   {
-    if(this.queue.length && this.isError(this.buffer))
+    if(this.isError(this.buffer))
     {
       this.socket.emit('error', this.buffer.toString());
       this.buffer = Buffer.from('');
